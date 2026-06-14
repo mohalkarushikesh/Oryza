@@ -1,0 +1,3 @@
+-> fine tune this chatbot 
+-> implement RAG 
+-> deploy it on doctor 
