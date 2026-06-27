@@ -159,7 +159,7 @@ When the project is started with Docker, the services run locally in separate co
 
 ```text
 ┌─────────────────────────────────────────┐
-│         Your Machine / Server          │
+│         Your Machine / Server           │
 │                                         │
 │  ┌──────────────┐                       │
 │  │   Browser    │ (port 80)             │
@@ -168,14 +168,14 @@ When the project is started with Docker, the services run locally in separate co
 │  ┌──────▼───────────┐                   │
 │  │  Nginx (Docker)  │                   │
 │  └──────┬───────────┘                   │
-│         │ (internal network)           │
+│         │ (internal network)            │
 │  ┌──────▼───────────────┐               │
 │  │  Flask App (Docker)  │               │
 │  └──────┬───────────────┘               │
-│         │ (internal network)           │
+│         │ (internal network)            │
 │  ┌──────▼──────────────────────┐        │
 │  │  Ollama + Qwen 2.5 1.5B     │        │
-│  │  (model cached locally)    │        │
+│  │  (model cached locally)     │        │
 │  └─────────────────────────────┘        │
 └─────────────────────────────────────────┘
 ```
