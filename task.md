@@ -1,3 +1,6 @@
-- -> fine tune this chatbot 
-- -> implement RAG 
-- -> deploy it on doctor  - Done 
+- Build a technically structured chatbot using the Qwen 2.5 1.5B model through Ollama.
+- Develop a Flask-based web interface for user interaction.
+- Containerize the application using Docker and Docker Compose.
+- Configure Nginx as a reverse proxy for deployment.
+- Deploy the solution in a self-hosted environment and validate local access.
+- Future enhancements: fine-tune the chatbot, implement RAG, and extend deployment capabilities. 

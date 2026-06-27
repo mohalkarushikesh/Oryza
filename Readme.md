@@ -1,32 +1,93 @@
 # Oryza Chatbot
 
-Oryza Chatbot is a lightweight AI assistant that runs on Docker through Ollama using the qwen2.5:1.5b model and serves a clean web interface for chatting. It is designed for privacy-friendly, self-hosted use and is deployed with Docker.
+Oryza Chatbot is a Flask-based web application that uses the Qwen 2.5 1.5B language model through Ollama as the backend AI assistant. The system is containerized with Docker, exposed through a reverse proxy, and designed for self-hosted deployment with local inference and privacy-friendly operation.
 
-## Features
+## Overview
 
-- Local AI chat using Ollama
-- Oryza-branded web interface
-- Fast response generation
-- Privacy-focused deployment on your own machine
-- Simple Flask-based chat UI
-- Docker-ready setup with Nginx reverse proxy
+This project implements a lightweight chatbot stack with the following components:
 
-## Tech Stack
+- A Python Flask application serving the web interface
+- A backend integration to Ollama for local LLM inference
+- The Qwen 2.5 1.5B model as the conversational AI engine
+- Docker-based deployment for portability and reproducibility
+- Nginx as a reverse proxy for production-style routing
 
-- Python
-- Flask
-- Ollama
-- HTML/CSS/JavaScript
-- Docker / Docker Compose
+## Architecture
+
+The application follows a simple request flow:
+
+1. The user submits a prompt through the Flask web UI.
+2. The Flask server forwards the request to the Ollama API endpoint.
+3. Ollama runs the selected Qwen model locally and returns the generated response.
+4. The Flask app renders the response in the browser.
+
+This architecture keeps the model execution local while exposing a simple, browser-based interface.
+
+## Technical Stack
+
+- Python 3.10+
+- Flask for the web layer
+- Requests for HTTP communication
+- Ollama for local model serving
+- Qwen 2.5 1.5B as the AI assistant model
+- Docker and Docker Compose for container orchestration
+- Nginx for reverse proxying
+- HTML, CSS, and JavaScript for the frontend UI
+
+## Project Structure
+
+```text
+Qwen-Chat/
+├── app/
+│   └── main.py
+├── templates/
+│   └── index.html
+├── docker-compose.yml
+├── Dockerfile
+├── nginx.conf
+├── requirements.txt
+└── Readme.md
+```
+
+## Core Implementation Details
+
+### Flask Web Interface
+
+The Flask app handles:
+
+- HTTP request routing for the chat page
+- Form submission handling for user prompts
+- Communication with the Ollama API
+- Response formatting for the frontend
+
+### Ollama + Qwen Model Integration
+
+The chatbot uses Ollama as the model runtime layer. The application is configured to call a locally hosted model such as:
+
+```bash
+ollama pull qwen2.5:1.5b
+```
+
+This allows the project to run the Qwen model without relying on external cloud inference services.
+
+### Docker Deployment
+
+The project is packaged as Docker containers for:
+
+- The Flask application
+- Ollama runtime
+- Nginx reverse proxy
+
+This makes the deployment consistent across development and production environments.
 
 ## Prerequisites
 
-Before running the project, ensure you have:
+Before running the project, ensure the following are installed:
 
 - Python 3.10+
 - Docker and Docker Compose
-- Ollama installed
-- A local model pulled, for example:
+- Ollama
+- A pulled local model, for example:
 
 ```bash
 ollama pull qwen2.5:1.5b
@@ -47,13 +108,13 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run the app locally:
+Run the Flask app locally:
 
 ```bash
 python app/main.py
 ```
 
-Open your browser at:
+Open the interface at:
 
 ```text
 http://localhost:5000
@@ -61,53 +122,40 @@ http://localhost:5000
 
 ## Docker Deployment
 
-From the project root, run:
+From the project root, build and start the services:
 
 ```bash
 docker compose up -d --build
 ```
 
-The app will be served through the proxy on:
+The application will be available through the proxy at:
 
 ```text
 http://localhost/
 ```
 
-For a custom domain, update the Nginx host configuration in `nginx.conf` and point your DNS to the server IP.
+For a custom domain, update the host configuration in nginx.conf and point your DNS records to the server IP address.
 
-## Project Structure
+## Environment and Configuration
 
-```text
-Qwen-Chat/
-├── app/
-│   └── main.py
-├── templates/
-│   └── index.html
-├── docker-compose.yml
-├── Dockerfile
-├── nginx.conf
-├── requirements.txt
-└── README.md
-```
+The application can be configured through environment variables and runtime settings such as:
 
-## How It Works
+- Ollama host endpoint
+- Selected model name
+- Application port
+- Reverse proxy host mapping
 
-1. The Flask app receives the user prompt.
-2. It sends the prompt to Ollama.
-3. Ollama runs the selected local model.
-4. The generated response is returned to the web UI.
-
-## User Interface 
+## User Interface
 
 ![Oryza User Interface](./images/ui.png)
 
 ## Future Improvements
 
-- Conversation history
+- Conversation history persistence
 - Streaming responses
 - Multiple model selection
-- Dark mode
-- Authentication
+- Authentication and authorization
+- Persistent session management
 - HTTPS with Let’s Encrypt
 
 ## License
