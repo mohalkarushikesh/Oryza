@@ -97,6 +97,10 @@ Qwen-Chat/
 3. Ollama runs the selected local model.
 4. The generated response is returned to the web UI.
 
+## User Interface 
+
+![Oryza User Interface](./images/ui.png)
+
 ## Future Improvements
 
 - Conversation history
