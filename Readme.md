@@ -1,6 +1,6 @@
 # Oryza Chatbot
 
-Oryza Chatbot is a lightweight AI assistant that runs locally through Ollama and serves a clean web interface for chatting with a local model. It is designed for privacy-friendly, self-hosted use and can be deployed with Docker.
+Oryza Chatbot is a lightweight AI assistant that runs on Docker through Ollama using the qwen2.5:1.5b model and serves a clean web interface for chatting. It is designed for privacy-friendly, self-hosted use and is deployed with Docker.
 
 ## Features
 
