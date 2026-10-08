@@ -147,11 +147,11 @@ The application can be configured through environment variables and runtime sett
 - Application port
 - Reverse proxy host mapping
 
-![alt text](image.png)
+![deployment workflow](./assets/deployment.png)
 
 ## User Interface
 
-![Oryza User Interface](./images/ui.png)
+![Oryza User Interface](./assets/dashboard.png)
 
 ## Future Improvements
 
