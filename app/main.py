@@ -1,3 +1,6 @@
+# Flask API serving the chat UI, checking Ollama health, and handling chat requests.
+# Sends prompts to a locally hosted Ollama model and returns responses with error handling.
+
 import os
 from pathlib import Path
 
@@ -6,7 +9,7 @@ from flask import Flask, jsonify, render_template, request
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-app = Flask(__name__, template_folder=str(BASE_DIR / "templates"))
+app = Flask(__name__, template_folder=str(BASE_DIR / "templates"))              
 
 OLLAMA_BASE_URL = os.getenv("OLLAMA_HOST", "http://localhost:11434").rstrip("/")
 OLLAMA_URL = f"{OLLAMA_BASE_URL}/api/generate"
@@ -88,7 +91,7 @@ def chat():
 
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", "5000"))
+    port = int(os.getenv("PORT", "9000"))
     print(f"\n  Flask ready — http://localhost:{port}")
     print(f"  Check Ollama:  http://localhost:{port}/health\n")
     app.run(host="0.0.0.0", port=port, debug=False)
